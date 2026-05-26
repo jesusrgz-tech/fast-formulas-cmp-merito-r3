@@ -26,7 +26,7 @@ l_log = SET_LOG('*** INICIO GB_CMP_INCRM_MERITO_UDT_PROMEDIO ***')
   Se obtiene el incremento promedio desde GB_INCREMENTO_MERITO_V2
   para la clave BR (Brasil)
 ============================================================================*/
-L_UDT_PROM = TO_NUMBER(GET_TABLE_VALUE('GB_INCREMENTO_MERITO_V2', 'Incremento_Promedio', 'BR'))
+L_UDT_PROM = TO_NUMBER(GET_TABLE_VALUE('GB_INCREMENTO_MERITO_V2', 'Incremento_Promedio', 'CH'))
 
 l_log = SET_LOG('Promedio UDT BR: ' || TO_CHAR(L_UDT_PROM))
 

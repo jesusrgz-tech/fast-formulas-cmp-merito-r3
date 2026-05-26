@@ -56,8 +56,8 @@ l_log = SET_LOG('Assignment ID: ' || TO_CHAR(L_ASG_ID))
   Se obtienen el incremento promedio y la inflacion minima desde la UDT
   GB_INCREMENTO_MERITO_V2 para la clave BR
 ============================================================================*/
-L_PROM      = TO_NUMBER(GET_TABLE_VALUE('GB_INCREMENTO_MERITO_V2', 'Incremento_Promedio', 'BR'))
-L_INFLACION = TO_NUMBER(GET_TABLE_VALUE('GB_INCREMENTO_MERITO_V2', 'Inflacion_Minima', 'BR'))
+L_PROM      = TO_NUMBER(GET_TABLE_VALUE('GB_INCREMENTO_MERITO_V2', 'Incremento_Promedio', 'CH'))
+L_INFLACION = TO_NUMBER(GET_TABLE_VALUE('GB_INCREMENTO_MERITO_V2', 'Inflacion_Minima', 'CH'))
 l_log = SET_LOG('Promedio BR: '  || TO_CHAR(L_PROM))
 l_log = SET_LOG('Inflacion BR: ' || TO_CHAR(L_INFLACION))
 
