@@ -1,23 +1,24 @@
 /******************************************************************************
 * *
-* FORMULA NAME      : GB_CMP_DIAS_BONO_MERITO_CH                                   
-* FORMULA TYPE      : Compensation Default and Override                       
-* DESCRIPTION       : Retorna los dias de bono por merito para Brasil segun
+* FORMULA NAME      : GB_CMP_DIAS_BONO_MERITO_CH
+* FORMULA TYPE      : Compensation Default and Override
+* DESCRIPTION       : Retorna los dias de bono por merito para China segun
                     el Legal Employer del colaborador desde UDT.
-                    Aplica solo para niveles 4 en adelante con calificacion 
-                    Sobresaliente
-                    definida en GB_CMP_CALIF_BONO_CH.
+                    Aplica solo para niveles 4 y 5 con calificacion
+                    Sobresaliente definida en GB_CMP_CALIF_BONO_CH.
 * *
 *-----------------------------------------------------------------------------*
 * CREATED BY        : IT-GLOBAL                                               *
 * CREATION DATE     : 07-Abril-2026                                           *
-* LAST UPDATE DATE  : 06-Mayo-2026                                           *
+* LAST UPDATE DATE  : 27-Mayo-2026                                            *
 * *
 *******************************************************************************
 * Change History:                                                             *
 * Name              Date             Version          Comments                *
 *-----------------------------------------------------------------------------*
-* It Global         15-Abril-2026    1                Versión Inicial         *
+* It Global         07-Abril-2026    1                Version Inicial         *
+* It Global         27-Mayo-2026     2                Ajuste validacion nivel *
+*                                                     4 y 5 exclusivamente    *
 * *
 ******************************************************************************/
 
@@ -35,7 +36,7 @@ DEFAULT_DATA_VALUE FOR CMP_EXTERNAL_WORKER_DATA_RGE_ASG_ASSIGNMENT_ID IS 0
 
 HR_EXTRACT_DATE = TO_DATE(CMP_IV_PLAN_EXTRACTION_DATE, 'YYYY/MM/DD')
 
-l_log = SET_LOG('*** INICIO GB_CMP_DIAS_BONO_MERITO_BR ***')
+l_log = SET_LOG('*** INICIO GB_CMP_DIAS_BONO_MERITO_CH ***')
 
 /***** NIVEL Y LEGAL EMPLOYER *****/
 CHANGE_CONTEXTS(EFFECTIVE_DATE = HR_EXTRACT_DATE)
@@ -47,11 +48,11 @@ CHANGE_CONTEXTS(EFFECTIVE_DATE = HR_EXTRACT_DATE)
 l_log = SET_LOG('Nivel: ' || L_NIVEL)
 l_log = SET_LOG('Legal Employer: ' || L_LEGAL_EMPLOYER)
 
-/* ============================================ VALIDAR NIVEL 4 O SUPERIOR ========================================= */
+/* ============================================ VALIDAR NIVEL 4 O 5 EXCLUSIVAMENTE ========================================= */
 L_NIVEL_NUM = TO_NUMBER(L_NIVEL)
-IF L_NIVEL_NUM < 4 THEN
+IF L_NIVEL_NUM < 4 OR L_NIVEL_NUM > 5 THEN
 (
-    l_log = SET_LOG('Nivel insuficiente (requiere 4 o superior), retorna 0')
+    l_log = SET_LOG('Nivel fuera de rango (requiere 4 o 5 exclusivamente), retorna 0')
     L_DEFAULT_VALUE = '0'
     RETURN L_DEFAULT_VALUE
 )
@@ -91,7 +92,7 @@ CHANGE_CONTEXTS(EFFECTIVE_DATE = HR_EXTRACT_DATE, COMPENSATION_RECORD_TYPE = 'CM
 l_log = SET_LOG('Evaluacion: ' || L_EVAL_TXT)
 
 /*========================================= VALIDAR CALIFICACION EN UDT ==========================================*/
-L_APLICA_BONO = GET_TABLE_VALUE('GB_CMP_CALIF_BONO_BR', 'Aplica_Bono', L_EVAL_TXT)
+L_APLICA_BONO = GET_TABLE_VALUE('GB_CMP_CALIF_BONO_CH', 'Aplica_Bono', L_EVAL_TXT)
 l_log = SET_LOG('Aplica Bono: ' || L_APLICA_BONO)
 
 IF L_APLICA_BONO = 'N/A' OR L_APLICA_BONO <> 'S' THEN
