@@ -2,7 +2,7 @@
 * *
 * FORMULA NAME      : GB_CMP_APERTURA_CH                                      *
 * FORMULA TYPE      : Compensation Default and Override                       *
-* DESCRIPTION       : Calcula la apertura del colaborador para Brasil.        *
+* DESCRIPTION       : Calcula la apertura del colaborador para China.        *
 * Fórmula: ((Sueldo - Min) / ((Max - Min) / 30)) + 70     *
 * *
 *-----------------------------------------------------------------------------*

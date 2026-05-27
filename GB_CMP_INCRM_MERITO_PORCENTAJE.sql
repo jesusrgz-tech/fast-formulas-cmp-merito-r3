@@ -2,7 +2,7 @@
 * FORMULA NAME      : GB_CMP_INCRM_MERITO_PORCENTAJE                       *
 * FORMULA TYPE      : Compensation Default and Override                       *
 * DESCRIPTION       : Obtiene el porcentaje promedio de UDT desde             *
-*                     GB_INCREMENTO_MERITO_V2 para la clave BR                *
+*                     GB_INCREMENTO_MERITO_V2 para la clave CH                *
 *---------------------------
 --------------------------------------------------*
 * CREATED BY        : IT-GLOBAL                                               *

@@ -2,7 +2,7 @@
 * *
 * FORMULA NAME      : GB_CMP_BONO_MERITO_CH                                   *
 * FORMULA TYPE      : Compensation Default and Override                       *
-* DESCRIPTION       : Calcula el bono por mérito para Brasil. Aplica solo     *
+* DESCRIPTION       : Calcula el bono por mérito para China. Aplica solo     *
 * para nivel 5 con calificación en GB_CMP_CALIF_BONO_BR.  *
 * Cálculo: 15 x Nuevo sueldo mensual / 2                  *
 * *
