@@ -1,8 +1,8 @@
 /******************************************************************************
-* FORMULA NAME      : GB_CMP_INCRM_MERITO_MIN_R4                                 *
+* FORMULA NAME      : GB_CMP_INCRM_MERITO_MIN_R3                                 *
 * FORMULA TYPE      : Compensation Default and Override                       *
 * DESCRIPTION       : Obtiene el porcentaje minimo de incremento por merito   *
-*                     para R4 (Espana, Portugal, Marruecos) de forma dinamica *
+*                     para R3 (Espana, Portugal, Marruecos) de forma dinamica *
 *                     desde UDT por idioma: GB_CMP_RANGOS_MERITO (ES/PT) o   *
 *                     GB_CMP_MAR_RANGOS_MERITO (MOR). Promedio e inflacion    *
 *                     se obtienen desde GB_INCREMENTO_MERITO por pais.        *
@@ -96,12 +96,18 @@ l_log = SET_LOG('Fecha de contexto: ' || TO_CHAR(L_FECHA_CONTEXTO, 'YYYY/MM/DD')
 
 
 
-IF L_LEGAL_EMPLOYER = 'Bimbo Morocco, S.A.R.L.A.U.' THEN
-    L_KEY_PAIS = 'MOR'
-ELSE IF L_LEGAL_EMPLOYER = 'Bimbo Donuts Portugal, LDA' THEN
-    L_KEY_PAIS = 'PT'
+IF L_LEGAL_EMPLOYER = '宾堡（北京）食品有限公司' THEN
+    L_KEY_PAIS = 'CN'
+ELSE IF L_LEGAL_EMPLOYER = '北京曼可顿食品科技有限公司' THEN
+    L_KEY_PAIS = 'CN'
+ELSE IF L_LEGAL_EMPLOYER = '曼可顿食品（上海）有限公司' THEN
+    L_KEY_PAIS = 'CN'
+ELSE IF L_LEGAL_EMPLOYER = '广东曼可顿食品有限公司' THEN
+    L_KEY_PAIS = 'CN'
+ELSE IF L_LEGAL_EMPLOYER = 'Mankattan (Shanghai) Distribution Co., Ltd.' THEN
+    L_KEY_PAIS = 'CN'
 ELSE
-    L_KEY_PAIS = 'ESP'
+    L_KEY_PAIS = 'N/A'
 
 l_log = SET_LOG('Key pais UDT: ' || L_KEY_PAIS)
 
@@ -128,10 +134,8 @@ CHANGE_CONTEXTS(EFFECTIVE_DATE = HR_EXTRACT_DATE, COMPENSATION_RECORD_TYPE = 'CM
         L_EXT_VAL = CMP_EXTERNAL_WORKER_DATA_RGE_ASG_VALUE1[L_IDX]
         IF L_EXT_VAL != 'N/A' THEN
         (
-            IF L_KEY_PAIS = 'MOR' THEN
-                L_EVAL_MAPPED = GET_TABLE_VALUE('GB_CMP_MAR_CALIFICAC_MERITO', 'Calificacion_Texto', L_EXT_VAL)
-            ELSE
-                L_EVAL_MAPPED = GET_TABLE_VALUE('GB_CMP_CALIFICAC_MERITO', 'Calificacion_Texto', L_EXT_VAL)
+           
+                L_EVAL_MAPPED = GET_TABLE_VALUE('GB_CMP_CALIFICAC_MERITO_R3', 'Calificacion_Texto', L_EXT_VAL)
 
             IF L_EVAL_MAPPED != 'N/A' THEN
             (
@@ -377,18 +381,19 @@ IF L_CONDICION = 'Promotion' AND (
         L_EVAL_TXT = 'Sobresaliente' OR
         L_EVAL_TXT = 'Supera' OR
         L_EVAL_TXT = 'Cumple con lo esperado' OR
-        L_EVAL_TXT = 'Outstanding'
+        L_EVAL_TXT = 'Outstanding' OR
+        L_EVAL_TXT = 'N/A'
     ) THEN
     L_CLAVE = 'Promotion'
 ELSE IF L_CONDICION = 'NonPerm' THEN
     L_CLAVE = 'NonPerm'
 ELSE IF L_CONDICION = 'NewHire' THEN
     L_CLAVE = 'NewHire'
-ELSE IF L_EVAL_TXT = 'N/A' AND L_KEY_PAIS = 'MOR' THEN
+ELSE IF L_EVAL_TXT = 'N/A' THEN
     L_CLAVE = 'WithoutEval'
-ELSE IF L_EVAL_TXT = 'N/A' AND L_KEY_PAIS = 'PT' THEN
+ELSE IF L_EVAL_TXT = 'N/A' THEN
     L_CLAVE = 'SinEval'
-    ELSE IF L_EVAL_TXT = 'N/A' AND L_KEY_PAIS = 'ESP' THEN
+    ELSE IF L_EVAL_TXT = 'N/A' THEN
     L_CLAVE = 'SinEval'
 ELSE IF L_EVAL_TXT = 'N/A' THEN
     L_CLAVE = 'Exit'
@@ -406,16 +411,10 @@ l_log = SET_LOG('Clave UDT: ' || L_CLAVE)
 /*============================================================================
   LECTURA UDT POR IDIOMA
 ============================================================================*/
-IF L_KEY_PAIS = 'MOR' THEN
-(
-    L_RANGO_MIN  = GET_TABLE_VALUE('GB_CMP_MAR_RANGOS_MERITO_V2', 'Minimum_Range', L_CLAVE)
-    L_APLICA_INF = GET_TABLE_VALUE('GB_CMP_MAR_RANGOS_MERITO_V2', 'Apply_Inflation', L_CLAVE)
-)
-ELSE
-(
-    L_RANGO_MIN  = GET_TABLE_VALUE('GB_CMP_RANGOS_MERITO', 'Rango_Minimo', L_CLAVE)
-    L_APLICA_INF = GET_TABLE_VALUE('GB_CMP_RANGOS_MERITO', 'Aplica_Inflacion', L_CLAVE)
-)
+
+L_RANGO_MIN  = GET_TABLE_VALUE('GB_CMP_RANGOS_MERITO_R3', 'Minimum_Range', L_CLAVE)
+L_APLICA_INF = GET_TABLE_VALUE('GB_CMP_RANGOS_MERITO_R3', 'Apply_Inflation', L_CLAVE)
+
 l_log = SET_LOG('Rango Min: '        || L_RANGO_MIN)
 l_log = SET_LOG('Aplica Inflacion: ' || L_APLICA_INF)
 

@@ -1,5 +1,5 @@
 /******************************************************************************
-* FORMULA NAME      : GB_CMP_TIPO_CONTRATO_DESC_R4                          *
+* FORMULA NAME      : GB_CMP_TIPO_CONTRATO_DESC_R3                          *
 * FORMULA TYPE      : Compensation Default and Override                       *
 * DESCRIPTION       : Retorna la descripcion del tipo de contrato             *
 *                     del colaborador a partir de PER_ASG_ATTRIBUTE1.         *
@@ -24,7 +24,7 @@ CMP_IVR_ASSIGNMENT_ID (NUMBER_NUMBER),
 CMP_IV_PLAN_EXTRACTION_DATE (text)
 DEFAULT FOR PER_ASG_ATTRIBUTE1 IS 'N/A'
 HR_EXTRACT_DATE = TO_DATE(CMP_IV_PLAN_EXTRACTION_DATE, 'YYYY/MM/DD')
-l_log = SET_LOG('*** INICIO GB_CMP_TIPO_CONTRATO_R4 ***')
+l_log = SET_LOG('*** INICIO GB_CMP_TIPO_CONTRATO_R3 ***')
 CHANGE_CONTEXTS(EFFECTIVE_DATE = HR_EXTRACT_DATE)
 
 (

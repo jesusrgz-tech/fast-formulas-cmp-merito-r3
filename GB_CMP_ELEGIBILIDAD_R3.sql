@@ -1,10 +1,10 @@
 /*****************************************************************************
-FORMULA NAME: GB_CMP_ELEGIBILIDAD_R4
+FORMULA NAME: GB_CMP_ELEGIBILIDAD_R3
 CREATED_BY : IT-GLOBAL
 CREATION_DATE : 07 de Abril del 2026
 LAST_UPDATE_DATE : 22 de Junio del 2026
 FORMULA TYPE : Participation and Rate Eligibility
-DESCRIPTION : Elegibilidad para el plan MABMO Merito R4. Incluye solo
+DESCRIPTION : Elegibilidad para el plan MABMO Merito R3. Incluye solo
               colaboradores con nivel 4 en adelante y con tipo de
               contrato permanente en regiones ESP/MOR/PT.
 *****************************************************************************/
@@ -31,11 +31,6 @@ CHANGE_CONTEXTS(EFFECTIVE_DATE = ELIG_DATE)
 
     IF MGR_LVL <> 'NO_MGR_LVL' THEN
 
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> develop
         MGR_LVL_NUM = TO_NUM(MGR_LVL)
 )
 
@@ -44,12 +39,9 @@ l_log = SET_LOG('Manager Level num: ' || TO_CHAR(MGR_LVL_NUM))
 l_log = SET_LOG('Attribute1 raw: ' || L_CODE)
 
 IF L_CODE = '100' THEN
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> develop
     L_CONTRATO_OK = 'Y'
 ELSE IF L_CODE = '109' THEN
     L_CONTRATO_OK = 'Y'
