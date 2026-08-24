@@ -31,7 +31,11 @@ CHANGE_CONTEXTS(EFFECTIVE_DATE = ELIG_DATE)
 
     IF MGR_LVL <> 'NO_MGR_LVL' THEN
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> develop
         MGR_LVL_NUM = TO_NUM(MGR_LVL)
 )
 
@@ -40,9 +44,12 @@ l_log = SET_LOG('Manager Level num: ' || TO_CHAR(MGR_LVL_NUM))
 l_log = SET_LOG('Attribute1 raw: ' || L_CODE)
 
 IF L_CODE = '100' THEN
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> develop
     L_CONTRATO_OK = 'Y'
 ELSE IF L_CODE = '109' THEN
     L_CONTRATO_OK = 'Y'
