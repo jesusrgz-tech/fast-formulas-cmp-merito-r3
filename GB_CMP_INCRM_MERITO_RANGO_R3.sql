@@ -16,18 +16,6 @@
 * Author          | Date            | Ver | Comments                         *
 *-----------------+-----------------+-----+----------------------------------*
 * IT Global       | 15-Abril-2026   |  1  | Version Inicial                  *
-* IT Global       | 21-Abril-2026   |  2  | Reestructura dinamica UDT        *
-* IT Global       | 14-Mayo-2026    |  3  | Replica logica retrofit promotion*
-* IT Global       | 27-Mayo-2026    |  4  | Adaptacion R4: key por pais      *
-* IT Global       | 28-Mayo-2026    |  5  | Correccion UDT rangos por idioma *
-* IT Global       | 22-Junio-2026   |  6  | Sin external data mapea a        *
-*                 |                 |     | Exit/Salida segun pais;          *
-*                 |                 |     | eliminacion linea debug suelta   *
-* IT Global       | 28-Julio-2026   |  7  | Clave 'Promotion' restringida a  *
-*                 |                 |     | L_EVAL_TXT = Sobresaliente/      *
-*                 |                 |     | Outstanding; con otra califica-  *
-*                 |                 |     | cion, promocion toma su          *
-*                 |                 |     | evaluacion real                  *
 ******************************************************************************/
 
 INPUTS ARE CMP_IV_PLAN_START_DATE (text),
