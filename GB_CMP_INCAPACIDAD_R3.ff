@@ -1,5 +1,5 @@
 /******************************************************************************
-* FORMULA NAME      : GB_CMP_INCAPACIDAD_R4                                  *
+* FORMULA NAME      : GB_CMP_INCAPACIDAD_R3                                  *
 * FORMULA TYPE      : Compensation Default and Override                       *
 * DESCRIPTION       : Retorna 0 en % Incremento si el colaborador tiene      *
 *                     registro de incapacidad (CMP_INCAPACIDAD) con valor    *
@@ -57,12 +57,14 @@ CHANGE_CONTEXTS(EFFECTIVE_DATE = HR_EXTRACT_DATE)
 
 l_log = SET_LOG('Legal Employer: ' || L_LEGAL_EMPLOYER)
 
-IF L_LEGAL_EMPLOYER = 'Bimbo Morocco, S.A.R.L.A.U.' THEN
-    L_KEY_PAIS = 'MOR'
-ELSE IF L_LEGAL_EMPLOYER = 'Bimbo Donuts Portugal, LDA' THEN
-    L_KEY_PAIS = 'PT'
+IF L_LEGAL_EMPLOYER = '宾堡（北京）食品有限公司' OR
+   L_LEGAL_EMPLOYER = '北京曼可顿食品科技有限公司' OR
+   L_LEGAL_EMPLOYER = '曼可顿食品（上海）有限公司' OR
+   L_LEGAL_EMPLOYER = '广东曼可顿食品有限公司' OR
+   L_LEGAL_EMPLOYER = 'Mankattan (Shanghai) Distribution Co., Ltd.' THEN
+    L_KEY_PAIS = 'CN'
 ELSE
-    L_KEY_PAIS = 'ESP'
+    L_KEY_PAIS = 'N/A'
 
 l_log = SET_LOG('Key pais UDT: ' || L_KEY_PAIS)
 

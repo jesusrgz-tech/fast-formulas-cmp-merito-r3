@@ -1,5 +1,5 @@
 /******************************************************************************
-* FORMULA NAME      : GB_CMP_APERTURA_R4                                      *
+* FORMULA NAME      : GB_CMP_APERTURA_R3                                      *
 * FORMULA TYPE      : Compensation Default and Override                       *
 * DESCRIPTION       : Calcula la apertura del colaborador para Region 4.      *
 *                     ESP y PT: sueldo anual dividido entre 365.              *

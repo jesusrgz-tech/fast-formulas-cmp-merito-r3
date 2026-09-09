@@ -1,5 +1,5 @@
 /******************************************************************************
-* FORMULA NAME      : GB_CMP_TIPO_CONTRATO_DESC_R4                          *
+* FORMULA NAME      : GB_CMP_TIPO_CONTRATO_DESC_R3                          *
 * FORMULA TYPE      : Compensation Default and Override                       *
 * DESCRIPTION       : Retorna la descripcion del tipo de contrato             *
 *                     del colaborador a partir de PER_ASG_ATTRIBUTE1.         *

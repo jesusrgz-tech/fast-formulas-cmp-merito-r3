@@ -1,5 +1,6 @@
 /*****************************************************************************
 FORMULA NAME: GB_CMP_ELEGIBILIDAD_R3
+FORMULA NAME: GB_CMP_ELEGIBILIDAD_R3
 CREATED_BY : IT-GLOBAL
 CREATION_DATE : 07 de Abril del 2026
 LAST_UPDATE_DATE : 22 de Junio del 2026
@@ -38,9 +39,34 @@ l_log = SET_LOG('Manager Level raw: ' || MGR_LVL)
 l_log = SET_LOG('Manager Level num: ' || TO_CHAR(MGR_LVL_NUM))
 l_log = SET_LOG('Attribute1 raw: ' || L_CODE)
 
+IF L_CODE = '100' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE IF L_CODE = '109' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE IF L_CODE = '130' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE IF L_CODE = '139' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE IF L_CODE = '150' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE IF L_CODE = '189' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE IF L_CODE = '200' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE IF L_CODE = '230' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE IF L_CODE = '289' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE IF L_CODE = 'MA02' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE IF L_CODE = 'PT01' THEN
+    L_CONTRATO_OK = 'Y'
+ELSE
+    L_CONTRATO_OK = 'N'
 
+l_log = SET_LOG('Contrato OK: ' || L_CONTRATO_OK)
 
-IF MGR_LVL_NUM >= 4 THEN
+IF MGR_LVL_NUM >= 2 AND L_CONTRATO_OK = 'Y' THEN
     ELIGIBLE = 'Y'
 
 l_log = SET_LOG('Resultado elegibilidad: ' || ELIGIBLE)
