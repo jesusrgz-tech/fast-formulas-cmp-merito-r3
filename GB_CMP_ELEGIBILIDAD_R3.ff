@@ -1,5 +1,6 @@
 /*****************************************************************************
 FORMULA NAME: GB_CMP_ELEGIBILIDAD_R3
+FORMULA NAME: GB_CMP_ELEGIBILIDAD_R3
 CREATED_BY : IT-GLOBAL
 CREATION_DATE : 07 de Abril del 2026
 LAST_UPDATE_DATE : 22 de Junio del 2026
@@ -39,9 +40,6 @@ l_log = SET_LOG('Manager Level num: ' || TO_CHAR(MGR_LVL_NUM))
 l_log = SET_LOG('Attribute1 raw: ' || L_CODE)
 
 IF L_CODE = '100' THEN
-
-
-
     L_CONTRATO_OK = 'Y'
 ELSE IF L_CODE = '109' THEN
     L_CONTRATO_OK = 'Y'
@@ -72,6 +70,6 @@ IF MGR_LVL_NUM >= 2 AND L_CONTRATO_OK = 'Y' THEN
     ELIGIBLE = 'Y'
 
 l_log = SET_LOG('Resultado elegibilidad: ' || ELIGIBLE)
-l_log = SET_LOG('*** FIN GB_CMP_ELEGIBILIDAD_R4 ***')
+l_log = SET_LOG('*** FIN GB_CMP_ELEGIBILIDAD_R3 ***')
 
 RETURN ELIGIBLE
